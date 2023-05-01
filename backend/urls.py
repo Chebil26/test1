@@ -26,7 +26,7 @@ from django.views.generic import TemplateView
 # def render_react(request):
 #     return render(request, "index.html")
 def render_react(request):
-    template_path = os.path.join(settings.BASE_DIR, 'frontend', 'build', 'index.html')
+    template_path = os.path.join(settings.BASE_DIR, 'index.html')
     return render(request, template_path)
 
 urlpatterns = [
