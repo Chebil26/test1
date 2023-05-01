@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
 from django.contrib import admin
 from django.shortcuts import render
 from django.urls import path,include, re_path
@@ -22,8 +23,11 @@ from django.conf.urls.static import static
 
 from django.views.generic import TemplateView
 
+# def render_react(request):
+#     return render(request, "index.html")
 def render_react(request):
-    return render(request, "index.html")
+    template_path = os.path.join(settings.BASE_DIR, 'frontend', 'build', 'index.html')
+    return render(request, template_path)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
