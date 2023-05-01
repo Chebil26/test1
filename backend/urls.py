@@ -14,17 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.shortcuts import render
+from django.urls import path,include, re_path
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 from django.views.generic import TemplateView
 
+def render_react(request):
+    return render(request, "index.html")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',TemplateView.as_view(template_name='index.html')),
+    # path('',TemplateView.as_view(template_name='index.html')),
     path('api/products/' , include('base.urls.product_urls')),
     path('api/stores/' , include('base.urls.store_urls')),
     path('api/users/' , include('base.urls.user_urls')),
@@ -33,6 +36,9 @@ urlpatterns = [
     path('api/blogs/' , include('blog.urls')),
     path('api/recommendation/', include('recommendation.urls')),
     path('', include('books.urls')),
+
+    re_path(r"^$", render_react),
+    re_path(r"^(?:.*)/?$", render_react),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
