@@ -26,12 +26,12 @@ from django.views.generic import TemplateView
 # def render_react(request):
 #     return render(request, "index.html")
 def render_react(request):
-    template_path = os.path.join(settings.BASE_DIR, 'index.html')
+    template_path = os.path.join(settings.BASE_DIR, 'frontend', 'build', 'index.html')
     return render(request, template_path)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('',TemplateView.as_view(template_name='index.html')),
+    path('',TemplateView.as_view(template_name='index.html')),
     path('api/products/' , include('base.urls.product_urls')),
     path('api/stores/' , include('base.urls.store_urls')),
     path('api/users/' , include('base.urls.user_urls')),
@@ -41,8 +41,8 @@ urlpatterns = [
     path('api/recommendation/', include('recommendation.urls')),
     path('', include('books.urls')),
 
-    re_path(r"^$", render_react),
-    re_path(r"^(?:.*)/?$", render_react),
+    # re_path(r"^$", render_react),
+    # re_path(r"^(?:.*)/?$", render_react),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
