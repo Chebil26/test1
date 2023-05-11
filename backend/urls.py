@@ -31,7 +31,7 @@ def render_react(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
+    # re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
     # path('',TemplateView.as_view(template_name='index.html')),
     path('api/products/' , include('base.urls.product_urls')),
     path('api/stores/' , include('base.urls.store_urls')),
